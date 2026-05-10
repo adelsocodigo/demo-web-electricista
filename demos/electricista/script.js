@@ -3,8 +3,10 @@
   const menuButton = document.querySelector(".menu-toggle");
   const nav = document.querySelector(".site-nav");
   const navLinks = document.querySelectorAll(".site-nav a");
+  const header = document.querySelector("[data-header]");
   const form = document.querySelector("[data-demo-form]");
   const status = document.querySelector("[data-form-status]");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
   const closeMenu = () => {
     if (!menuButton || !nav) {
@@ -35,6 +37,61 @@
         closeMenu();
       }
     });
+  }
+
+  if (header) {
+    const updateHeaderState = () => {
+      header.classList.toggle("is-scrolled", window.scrollY > 8);
+    };
+
+    updateHeaderState();
+    window.addEventListener("scroll", updateHeaderState, { passive: true });
+  }
+
+  const revealTargets = document.querySelectorAll([
+    ".hero",
+    ".section-heading",
+    ".service-card",
+    ".benefits-grid article",
+    ".step",
+    ".testimonial",
+    ".zones-inner",
+    ".trust-photo",
+    ".check-grid div",
+    ".contact-item",
+    ".contact-form",
+    ".site-footer"
+  ].join(","));
+
+  if (revealTargets.length) {
+    revealTargets.forEach((element, index) => {
+      element.classList.add("reveal-item");
+
+      const delay = index % 4;
+      if (delay > 0) {
+        element.classList.add(`reveal-delay-${delay}`);
+      }
+    });
+
+    if (reducedMotion.matches || !("IntersectionObserver" in window)) {
+      revealTargets.forEach((element) => element.classList.add("is-visible"));
+    } else {
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      }, {
+        rootMargin: "0px 0px -8% 0px",
+        threshold: 0.12
+      });
+
+      revealTargets.forEach((element) => revealObserver.observe(element));
+    }
   }
 
   if (form && status) {

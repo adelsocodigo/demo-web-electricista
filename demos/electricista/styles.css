@@ -97,6 +97,13 @@ textarea {
   border-bottom: 1px solid rgba(217, 224, 234, 0.9);
   background: rgba(251, 253, 255, 0.96);
   backdrop-filter: blur(16px);
+  transition: box-shadow 180ms ease, background-color 180ms ease, border-color 180ms ease;
+}
+
+.site-header.is-scrolled {
+  border-color: rgba(15, 107, 255, 0.12);
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 12px 34px rgba(23, 32, 51, 0.1);
 }
 
 .header-inner {
@@ -125,6 +132,12 @@ textarea {
   font-weight: 800;
   letter-spacing: 0;
   box-shadow: inset 0 -6px 0 rgba(0, 0, 0, 0.14);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.brand:hover .brand-mark {
+  transform: rotate(-3deg) scale(1.04);
+  box-shadow: inset 0 -6px 0 rgba(0, 0, 0, 0.14), 0 10px 22px rgba(15, 107, 255, 0.24);
 }
 
 .brand strong,
@@ -154,6 +167,12 @@ textarea {
   background: #fff;
   color: var(--color-ink);
   cursor: pointer;
+  transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.menu-toggle:hover {
+  border-color: var(--color-electric);
+  box-shadow: 0 10px 22px rgba(15, 107, 255, 0.12);
 }
 
 .menu-toggle span {
@@ -210,6 +229,20 @@ textarea {
     linear-gradient(0deg, rgba(15, 107, 255, 0.07) 1px, transparent 1px),
     #f8fbff;
   background-size: 44px 44px;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 0%, rgba(255, 255, 255, 0.5) 42%, transparent 62%);
+  opacity: 0.55;
+  transform: translateX(-100%);
+  pointer-events: none;
+}
+
+.hero.is-visible::before {
+  animation: hero-sweep 1200ms ease-out 220ms both;
 }
 
 .hero-grid {
@@ -280,6 +313,7 @@ h3 {
   padding: 0.68rem 0.85rem 0.68rem 2.1rem;
   color: var(--color-ink);
   font-weight: 700;
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
 
 .trust-list span::before,
@@ -310,6 +344,12 @@ h3 {
   box-shadow: 0 0 0 4px rgba(249, 115, 78, 0.14);
 }
 
+.trust-list span:hover {
+  border-color: rgba(15, 107, 255, 0.28);
+  box-shadow: 0 12px 24px rgba(23, 32, 51, 0.08);
+  transform: translateY(-2px);
+}
+
 .hero-actions,
 .zones-inner,
 .footer-inner {
@@ -330,11 +370,11 @@ h3 {
   font-weight: 800;
   line-height: 1.2;
   text-align: center;
-  transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+  transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease, color 160ms ease, box-shadow 160ms ease;
 }
 
 .btn:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
 .btn-primary {
@@ -345,6 +385,7 @@ h3 {
 
 .btn-primary:hover {
   background: linear-gradient(135deg, var(--color-electric-dark), var(--color-teal-dark));
+  box-shadow: 0 16px 34px rgba(15, 107, 255, 0.32);
 }
 
 .btn-secondary {
@@ -369,6 +410,7 @@ h3 {
   color: #fff;
   overflow: hidden;
   box-shadow: var(--shadow-card);
+  transform: translateZ(0);
 }
 
 .hero-panel::after {
@@ -384,6 +426,11 @@ h3 {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 700ms ease;
+}
+
+.hero-panel:hover img {
+  transform: scale(1.04);
 }
 
 .status-card,
@@ -478,6 +525,17 @@ h3 {
   border-radius: var(--radius);
   background: var(--color-surface);
   box-shadow: 0 10px 28px rgba(23, 32, 51, 0.06);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.service-card:hover,
+.benefits-grid article:hover,
+.step:hover,
+.testimonial:hover,
+.contact-form:hover {
+  border-color: color-mix(in srgb, var(--card-accent, var(--color-electric)) 38%, var(--color-line));
+  box-shadow: 0 20px 42px rgba(23, 32, 51, 0.11);
+  transform: translateY(-4px);
 }
 
 .service-card {
@@ -494,6 +552,13 @@ h3 {
   height: 4px;
   margin: -1.15rem -1.15rem 1rem;
   background: var(--card-accent, var(--color-electric));
+  transition: height 180ms ease;
+}
+
+.service-card:hover::before,
+.benefits-grid article:hover::before,
+.testimonial:hover::before {
+  height: 6px;
 }
 
 .service-card:nth-child(1),
@@ -597,6 +662,12 @@ h3 {
   height: auto;
   aspect-ratio: 3 / 2;
   object-fit: cover;
+  transition: transform 700ms ease, filter 300ms ease;
+}
+
+.trust-photo:hover img {
+  filter: saturate(1.08) contrast(1.03);
+  transform: scale(1.04);
 }
 
 .check-grid div {
@@ -635,6 +706,13 @@ h3 {
   background: linear-gradient(135deg, var(--color-electric), var(--color-teal));
   color: #fff;
   font-weight: 900;
+  box-shadow: 0 0 0 0 rgba(15, 107, 255, 0.2);
+  transition: box-shadow 180ms ease, transform 180ms ease;
+}
+
+.step:hover span {
+  box-shadow: 0 0 0 7px rgba(15, 107, 255, 0.12);
+  transform: scale(1.04);
 }
 
 .zones {
@@ -676,6 +754,17 @@ details {
   border-radius: var(--radius);
   background: rgba(255, 255, 255, 0.08);
   padding: 1rem;
+  transition: border-color 180ms ease, background-color 180ms ease, transform 180ms ease;
+}
+
+details:hover,
+details[open] {
+  border-color: rgba(255, 217, 90, 0.38);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+details[open] {
+  transform: translateY(-1px);
 }
 
 summary {
@@ -705,6 +794,7 @@ details p {
   border-radius: var(--radius);
   background: linear-gradient(180deg, #fff, #f8fbff);
   padding: 1rem;
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
 }
 
 .contact-item span {
@@ -718,6 +808,8 @@ details p {
 
 a.contact-item:hover {
   border-color: var(--color-electric);
+  box-shadow: 0 14px 28px rgba(15, 107, 255, 0.1);
+  transform: translateY(-2px);
 }
 
 .contact-form {
@@ -831,10 +923,70 @@ textarea:focus {
   font-size: 0.9rem;
   font-weight: 900;
   box-shadow: 0 16px 34px rgba(31, 157, 85, 0.34);
+  animation: whatsapp-pulse 2200ms ease-in-out infinite;
+  transition: transform 160ms ease, box-shadow 160ms ease;
 }
 
 .floating-whatsapp:hover {
   background: #157a40;
+  box-shadow: 0 18px 38px rgba(31, 157, 85, 0.44);
+  transform: translateY(-2px) scale(1.03);
+}
+
+.reveal-item {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 520ms ease, transform 520ms ease;
+}
+
+.reveal-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 {
+  transition-delay: 70ms;
+}
+
+.reveal-delay-2 {
+  transition-delay: 140ms;
+}
+
+.reveal-delay-3 {
+  transition-delay: 210ms;
+}
+
+.reveal-item.is-visible.service-card:hover,
+.reveal-item.is-visible.step:hover,
+.reveal-item.is-visible.testimonial:hover,
+.reveal-item.is-visible.contact-form:hover,
+.benefits-grid .reveal-item.is-visible:hover {
+  transform: translateY(-4px);
+}
+
+a.reveal-item.is-visible.contact-item:hover {
+  transform: translateY(-2px);
+}
+
+@keyframes hero-sweep {
+  from {
+    transform: translateX(-100%);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes whatsapp-pulse {
+  0%,
+  100% {
+    box-shadow: 0 16px 34px rgba(31, 157, 85, 0.34), 0 0 0 0 rgba(31, 157, 85, 0.24);
+  }
+
+  50% {
+    box-shadow: 0 16px 34px rgba(31, 157, 85, 0.34), 0 0 0 10px rgba(31, 157, 85, 0);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -845,6 +997,11 @@ textarea:focus {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+  }
+
+  .reveal-item {
+    opacity: 1;
+    transform: none;
   }
 }
 
