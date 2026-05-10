@@ -2,6 +2,7 @@
   from = "/"
   to = "/demos/electricista/"
   status = 200
+  force = true
 
 [[headers]]
   for = "/*"
